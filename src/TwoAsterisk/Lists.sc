@@ -50,8 +50,26 @@ def pack[A](l: List[A]):List[List[A]] = {
 
 pack(l2)
 
-//Use the result of problem P09 to implement the so-called run-length encoding data compression method. Consecutive duplicates of elements are encoded as tuples (N, E) where N is the number of duplicates of the element E.
+//Use the result of earlier problem to implement the so-called run-length encoding data compression method. Consecutive duplicates of elements are encoded as tuples (N, E) where N is the number of duplicates of the element E.
 
+def encode[A](ls: List[A]): List[(Int, A)] =
+  pack(ls) map { a => (a.length, a.head) }
+
+encode(l2)
+
+// Modify the result of earlier problem in such a way that if an element has no duplicates it is simply copied into the result list. Only elements with duplicates are transferred as (N, E) terms.
+
+def modifiedEncode[A](l: List[A]):List[Any] =
+  encode(l) map {a => if (a._1 == 1)a._2 else (a._1,a._2)}
+
+modifiedEncode(l2)
+
+// Given a run-length code list generated as specified in encode , construct its uncompressed version.
+
+def decode[A](ls: List[(Int, A)]): List[A] =
+  ls flatMap { e => List.fill(e._1)(e._2) }
+
+decode(encode(l2))
 
 
 
