@@ -45,4 +45,33 @@ def isPalin[T](l:List[T]):Boolean = if (l==l.reverse) true else false
 
 isPalin(list3)
 
+// Split a list into two parts.
+
+def split[T](pos:Int, l:List[T]) = (l.take(pos),l.drop(pos))
+
+split(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
+
+//  Remove the Kth element from a list. from 0.
+def removeAt[A](pos: Int, l:List[A]) = (l.take(pos):::l.drop(pos+1),l(pos))
+
+removeAt(1, List('a, 'b, 'c, 'd, 'e, 'f, 'g))
+
+// Insert an element at a given position into a list.
+def insertAt[A](insertion: A, pos: Int, l: List[A]):List[A] = l.splitAt(pos) match {
+  case (pre, post) => pre ::: insertion ::post
+}
+
+insertAt('new, 1, List('a, 'b, 'c, 'd))
+
+// Create a list containing all integers within a given range
+
+def ranging(n1:Int, n2:Int):List[Int] =
+  if (n1 > n2)
+    List.range(n2,n1+1)
+  else
+    List.range(n1,n2+1)
+
+ranging(5,1)
+
+
 

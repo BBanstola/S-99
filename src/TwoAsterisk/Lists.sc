@@ -89,6 +89,41 @@ def duplicate[A](count:Int,l: List[A]):List[A] = l flatMap {
 }
 duplicate(3,List('a','b','c','d'))
 
+//  Drop every Nth element from a list.
 
+def dropRecursive[A](n: Int, ls: List[A]): List[A] = {
+  def dropR(c: Int, curList: List[A]): List[A] = (c, curList) match {
+    case (_, Nil)       => Nil
+    case (1, _ :: tail) => dropR(n, tail)
+    case (_, h :: tail) => h :: dropR(c - 1, tail)
+  }
+  dropR(n, ls)
+}
 
+dropRecursive(3,List('a','b','c','d'))
 
+//Given two indices, I and K, the slice is the list containing the elements from and including the Ith element up to but not including the Kth element of the original list. Start counting the elements with 0.
+
+def slice[A](n1: Int, n2:Int, l: List[A]): List[A] = (l.drop(n1)).take(n2-n1)
+
+slice(3, 7, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
+
+//Rotate a list N places to the left.
+
+def rotate[A](n: Int, l: List[A]): List[A] = {
+  if (n < 0) {
+    val m = l.length + n
+    ((l.drop(m):::l.take(m)))
+  }
+  else{
+  ((l.drop(n):::l.take(n)))}}
+
+rotate(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
+
+rotate(-3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
+
+//Extract a given number of randomly selected elements from a list.
+
+def randomSelect[A](num:Int, l: List[A]): List[A] ={
+
+}
