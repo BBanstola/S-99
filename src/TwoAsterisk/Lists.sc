@@ -66,13 +66,28 @@ modifiedEncode(l2)
 
 // Given a run-length code list generated as specified in encode , construct its uncompressed version.
 
-def decode[A](ls: List[(Int, A)]): List[A] =
-  ls flatMap { e => List.fill(e._1)(e._2) }
+def decode[A](ls: List[(Int, A)]): List[A] = ls flatMap
+  { e => List.fill(e._1)(e._2) }
 
 decode(encode(l2))
 
+// Implement the so-called run-length encoding data compression method directly. I.e. don't use other methods you've written (like P09's pack); do all the work directly.
+def encodeDirect[A](l: List[A]):List[(Int, A)] = {
+  if (l.isEmpty) Nil
+  else {
+    val(same, next) = l span ( _ == l.head)
+    (same.length, same.head)::encodeDirect(next)
+  }
+}
 
+encodeDirect(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))
 
+// Duplicate the elements of a list.
+
+def duplicate[A](count:Int,l: List[A]):List[A] = l flatMap {
+  {e => List.fill(count)(e)}
+}
+duplicate(3,List('a','b','c','d'))
 
 
 
