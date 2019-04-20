@@ -73,5 +73,14 @@ def ranging(n1:Int, n2:Int):List[Int] =
 
 ranging(5,1)
 
+//Extract a given number of randomly selected elements from a list.
+
+def randomSelect1[A](n: Int, ls: List[A]): List[A] =
+  if (n <= 0) Nil
+  else {
+    val (rest, e) = removeAt((new util.Random).nextInt(ls.length), ls)
+    e :: randomSelect1(n - 1, rest)
+  }
+
 
 

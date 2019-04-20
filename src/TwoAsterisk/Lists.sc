@@ -122,8 +122,3 @@ rotate(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
 
 rotate(-3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
 
-//Extract a given number of randomly selected elements from a list.
-
-def randomSelect[A](num:Int, l: List[A]): List[A] ={
-
-}
