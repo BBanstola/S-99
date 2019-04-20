@@ -82,5 +82,16 @@ def randomSelect1[A](n: Int, ls: List[A]): List[A] =
     e :: randomSelect1(n - 1, rest)
   }
 
+randomSelect1(3,list2)
+
+//  Lotto: Draw N different random numbers from the set 1..M.
+
+def lotto(num: Int, limit:Int):List[Int] = {
+  val s = List.range(1,limit)
+  randomSelect1(num, s)
+}
+
+lotto(5,50)
+
 
 
