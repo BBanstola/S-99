@@ -93,5 +93,42 @@ def lotto(num: Int, limit:Int):List[Int] = {
 
 lotto(5,50)
 
+// Generate a random permutation of the elements of a list.
+
+def randomPermute[A](l:List[A]):List[A] = {
+  randomSelect1(l.length,l)
+}
+
+randomPermute(list3)
+
+/* Generate the combinations of K distinct objects chosen from the N elements of a list.
+In how many ways can a committee of 3 be chosen from a group of 12 people?
+We all know that there are C(12,3) = 220 possibilities (C(N,K) denotes the well-known binomial
+coefficient). For pure mathematicians, this result may be great. But we want to really generate
+all the possibilities. */
+
+def combo[A](num:Int, l: List[A]) ={
+ l.combinations(num).mkString("\n")
+}
+
+combo(2,List(1,2,3,4))
+
+/*  Group the elements of a set into disjoint subsets.
+    a) In how many ways can a group of 9 people work in 3 disjoint subgroups of 2, 3 and 4 persons?
+    Write a function that generates all the possibilities.
+*/
+
+def comboAll[A](l:List[A])={
+  var count = l.length
+  while (count > 0){
+    println(combo(count,l))
+    count -= 1
+  }
+}
+
+comboAll(List(1,2,3,4,5))
+
+
+
 
 
