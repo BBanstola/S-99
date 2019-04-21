@@ -122,3 +122,49 @@ rotate(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
 
 rotate(-3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
 
+/* Sorting a list of lists according to length of sublists.
+    We suppose that a list contains elements that are lists themselves.
+    The objective is to sort the elements of the list according to their length.
+    E.g. short lists first, longer lists later, or vice versa. */
+
+def sortList[A](l:Array[Array[A]])= {             //Tried using conventional way
+  for (i <- 0 until l.length) {
+    for (j <- 0 until i) {
+      if (l(j).length < l(j + 1).length) {
+        var temp = l(j)
+        l(j) = l(j + 1)
+        l(j + 1) = temp
+      }
+    }
+  }
+}
+
+
+sortList(Array(Array('a, 'b, 'c), Array('d, 'e), Array('f, 'g, 'h), Array('d, 'e), Array('i, 'j, 'k, 'l), Array('m, 'n), Array('o)))
+
+// Functional approach
+
+def lSort[A](ls: List[List[A]]): List[List[A]] =
+  ls sortWith { _.length < _.length }
+
+def lSort1[A](ls: List[List[A]]): List[List[A]] = ls sortBy(_.length)
+
+lSort(List(List('a, 'b, 'c), List('d, 'e), List('f, 'g, 'h), List('d, 'e), List('i, 'j, 'k, 'l), List('m, 'n), List('o)))
+
+lSort1(List(List('a, 'b, 'c), List('d, 'e), List('f, 'g, 'h), List('d, 'e), List('i, 'j, 'k, 'l), List('m, 'n), List('o, 'p)))
+
+/* Again, we suppose that a list contains elements that are lists themselves.
+   But this time the objective is to sort the elements according to their length frequency;
+   i.e. in the default, sorting is done ascendingly, lists with rare lengths are placed, others
+  with a more frequent length come later. */
+
+def lsortFreq[A](ls: List[List[A]]): List[List[A]] = {
+  val freqs = Map(encode(ls map { _.length } sortWith  { _ < _ }) map { _.swap }:_*)
+  ls sortWith  { (e1, e2) => freqs(e1.length) < freqs(e2.length) }
+}
+
+lsortFreq(List(List('a, 'b, 'c), List('d, 'e), List('f, 'g, 'h), List('d, 'e), List('i, 'j, 'k, 'l), List('m, 'n), List('o)))
+
+
+
+

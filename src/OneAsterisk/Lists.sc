@@ -128,7 +128,33 @@ def comboAll[A](l:List[A])={
 
 comboAll(List(1,2,3,4,5))
 
+// Combination another way
+
+def flatMapSublists[A,B](ls: List[A])(f: (List[A]) => List[B]): List[B] =
+  ls match {
+    case Nil => Nil
+    case sublist@(_ :: tail) => f(sublist) ::: flatMapSublists(tail)(f)
+  }
+
+def combinations[A](n: Int, ls: List[A]): List[List[A]] =
+  if (n == 0) List(Nil)
+  else flatMapSublists(ls) { sl =>
+    combinations(n - 1, sl.tail) map {sl.head :: _}
+  }
 
 
+/* Generalize the above predicate in a way that we can specify a list of group sizes and the predicate will
+    return a list of groups. Example:
+    scala> group(List(2, 2, 5), List("Aldo", "Beat", "Carla", "David", "Evi", "Flip", "Gary", "Hugo", "Ida"))
+    res0: List[List[List[String]]] = List(List(List(Aldo, Beat), List(Carla, David), List(Evi, Flip, Gary, Hugo, Ida)), ...*/
+
+def group[A](ns: List[Int], ls: List[A]): List[List[List[A]]] = ns match {
+  case Nil     => List(Nil)
+  case n :: ns => combinations(n, ls) flatMap { c =>
+    group(ns, ls diff c) map {c :: _}
+  }
+}
+
+group(List(2,3),List("Aldo", "Beat", "Carla", "David", "Evi", "Flip", "Gary", "Hugo", "Ida"))
 
 
