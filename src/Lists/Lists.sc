@@ -298,7 +298,6 @@ def sortList[A](l:Array[Array[A]])= {             //Tried using conventional way
   }
 }
 
-
 sortList(Array(Array('a, 'b, 'c), Array('d, 'e), Array('f, 'g, 'h), Array('d, 'e), Array('i, 'j, 'k, 'l), Array('m, 'n), Array('o)))
 
 // Functional approach
