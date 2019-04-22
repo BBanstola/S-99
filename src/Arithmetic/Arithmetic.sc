@@ -49,9 +49,19 @@ def primeFactors(n: Int): List[Int] = {
   ansList
 }
 
-primeFactors(20)
+primeFactors(315)
 
 // 36. Determine the prime factors of a given positive integer (2).
+
+def primeM(n: Int)={
+  var ans = new ListBuffer[(Int,Int)]()
+  for (i <- 0 until primeFactors(n).length){
+    for (j<- 1 to n/2){
+          if (n % (primeFactors(i)*j) == 0)
+    }
+  }
+}
+
 
 
 
