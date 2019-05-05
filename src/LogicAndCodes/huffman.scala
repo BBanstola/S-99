@@ -46,6 +46,11 @@ object P50 {
     huffmanR(Queue.empty.enqueue(ls sortWith  { _._2 < _._2 } map { e => LeafNode(e._1, e._2) }),
       Queue.empty)
   }
+
+  def main(args: Array[String]): Unit = {
+    println(huffman(List(("a", 45), ("b", 13), ("c", 12), ("d", 16), ("e", 9), ("f", 5))))
+  }
+
 }
 
 
