@@ -1,3 +1,5 @@
+package BinaryTrees
+
 /*A binary tree is either empty or it is composed of a root element and two successors, which are binary trees themselves.
 
   We shall use the following classes to represent binary trees. (Also available in tree1.scala.) An End is equivalent to

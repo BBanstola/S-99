@@ -28,7 +28,7 @@ abstract class GraphBase[T, U] {
 
   override def equals(o: Any) = o match {
     case g: GraphBase[T,U] => (nodes.keys.toList -- g.nodes.keys.toList == Nil &&
-      edges.map(_.toTuple) -- g.edges.map(_.toTuple) == Nil)
+      edges.map(_.toTuple) -- (g.edges.map(_.toTuple)) == Nil)
     case _ => false
   }
 
