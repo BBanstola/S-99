@@ -1,7 +1,5 @@
 package BinaryTrees
 
-import BinaryTrees._
-
 // P55 (**) Construct completely balanced binary trees.
 //     In a completely balanced binary tree, the following property holds for
 //     every node: The number of nodes in its left subtree and the number of
@@ -17,7 +15,7 @@ import BinaryTrees._
 //     res0: List(Node[String]) = List(T(x T(x . .) T(x . T(x . .))), T(x T(x . .) T(x T(x . .) .)), ...
 
 
-object Tree {
+object TreeBalance {
 
   def cBalanced[T](nodes: Int, value: T):List[Tree[T]] = nodes match {
     case n if n < 1 => List(End)
@@ -30,5 +28,9 @@ object Tree {
       val greaterSubtrees = cBalanced((n-1)/2 +1, value)
       lesserSubtrees.flatMap(l => greaterSubtrees.flatMap(g => List(Node(value, l, g), Node(value, g, l))))
     }
+  }
+
+  def main(args: Array[String]): Unit = {
+    println(TreeBalance.cBalanced(4, "x"))
   }
 }
