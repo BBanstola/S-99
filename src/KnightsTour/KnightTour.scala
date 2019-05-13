@@ -14,6 +14,3 @@ package KnightsTour
   Can you find only "closed tours", where the knight can jump from its final position back to its starting position? */
 
 
-object KnightTour {
-
-}
