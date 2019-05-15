@@ -1,5 +1,3 @@
-package BinaryTrees
-
 // P55 (**) Construct completely balanced binary trees.
 //     In a completely balanced binary tree, the following property holds for
 //     every node: The number of nodes in its left subtree and the number of

@@ -1,5 +1,3 @@
-package BinaryTrees
-
 // P56 (**) Symmetric binary trees.
 //     Let us call a binary tree symmetric if you can draw a vertical line
 //     through the root node and then the right subtree is the mirror image of
@@ -12,6 +10,33 @@ package BinaryTrees
 //     scala> Node('a', Node('b'), Node('c')).isSymmetric
 //     res0: Boolean = true
 
-object Symmetric {
 
+sealed abstract class Tree[+T] {
+  def isMirrorOf[V](tree: Tree[V]): Boolean
+  def isSymmetric: Boolean
+}
+
+case class Node[+T](value: T, left: Tree[T], right: Tree[T]) extends Tree[T] {
+  override def toString = "T(" + value.toString + " " + left.toString + " " + right.toString + ")"
+  def isMirrorOf[V](tree: Tree[V]): Boolean = tree match {
+    case t: Node[V] => left.isMirrorOf(t.right) && right.isMirrorOf(t.left)
+    case _          => false
+  }
+  def isSymmetric: Boolean = left.isMirrorOf(right)
+}
+
+object Node {
+  def apply[T](value: T): Node[T] = Node(value, End, End)
+}
+
+case object End extends Tree[Nothing] {
+  def isMirrorOf[V](tree: Tree[V]): Boolean = tree == End
+  def isSymmetric: Boolean = true
+  override def toString = "."
+}
+
+object Symmetric{
+def main(args: Array[String]): Unit = {
+  println(Node('a', Node('b'), Node('c')).isSymmetric)
+  }
 }
