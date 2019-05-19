@@ -13,4 +13,12 @@ package KnightsTour
 
   Can you find only "closed tours", where the knight can jump from its final position back to its starting position? */
 
+case class Point(x: Int, y: Int){
+  def +(o : Point) = Point(x + o.x, y + o.y)
+  def -(o : Point) = Point(x - o.x, y - o.y)
+  def +(t: (Int,Int)) = Point(x + t._1, y + t._2)
+  def -(t: (Int,Int)) = Point(x - t._1, y - t._2)
+  def jumps(n : Int): List[Point] = List((2,1),(1,2),(-1,2),(-2,1)) flatMap {x => List(this + x, this - x)} filter {p => (p.x min p.y) >= 1 && (p.x max p.y) <= n}
+}
+
 
